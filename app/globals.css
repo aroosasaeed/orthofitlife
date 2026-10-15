@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette — premium editorial, warm and calm */
+  --color-navy: #17212b;
+  --color-navy-800: #1f2c38;
+  --color-navy-700: #2a3a49;
+  --color-sage: #a3b18a;
+  --color-sage-600: #8a9a6f;
+  --color-sage-100: #e9ecdf;
+  --color-cream: #f7f6f2;
+  --color-beige: #e9e3d5;
+  --color-teal: #4f7c78;
+  --color-teal-600: #406862;
+  --color-ink: #101820;
+  --color-slate-soft: #5c6b77;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --shadow-soft: 0 1px 2px rgb(23 33 43 / 0.04), 0 8px 24px rgb(23 33 43 / 0.06);
+  --shadow-lift: 0 2px 4px rgb(23 33 43 / 0.06), 0 16px 40px rgb(23 33 43 / 0.1);
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-sage);
+  color: var(--color-navy);
+}
+
+/* Focus visibility for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Thin editorial scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-sage) 55%, transparent);
+  border-radius: 8px;
+}
+
+/* Hide scrollbars on horizontal card rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle grain texture utility for hero / editorial sections */
+.texture-grain {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgb(23 33 43 / 0.05) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+}
+
+/* Respect reduced motion globally — animated wrappers also check the media
+   query in JS for JS-driven springs. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility: gradient text accent for editorial headings */
+.text-gradient-dark {
+  background: linear-gradient(120deg, var(--color-navy) 20%, var(--color-teal) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
